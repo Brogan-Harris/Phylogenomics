@@ -134,14 +134,15 @@ figure.savefig('Concatenation_gap_content.png', dpi=400)
 
 # Make graph of problem species
 df_problem_species = df_concat[(df_concat["-"] >= 80)]
-ax = sns.barplot(x="Species", y="-", data=df_problem_species)
-ax.set_title("High Gap Content species")
-ax.set_xlabel("Species")
-ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right")
-ax.set_ylabel("% of gaps in alignment")
-ax.tick_params(labelsize=10)
-figure = ax.get_figure()
-figure.savefig('High_gap_content.png', dpi=400)
+if len(df_problem_species) >= 1:
+          ax = sns.barplot(x="Species", y="-", data=df_problem_species)
+          ax.set_title("High Gap Content species")
+          ax.set_xlabel("Species")
+          ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right")
+          ax.set_ylabel("% of gaps in alignment")
+          ax.tick_params(labelsize=10)
+          figure = ax.get_figure()
+          figure.savefig('High_gap_content.png', dpi=400)
 
 
 # Make new df without the problem species and convert to list.
