@@ -110,23 +110,23 @@ for orthogroup in glob.glob("*.fa"):
     species_rep[o_file] = species_representation
 
 
-# Move all orthogroups with >66% representation to a seperate folder
-os.mkdir("Orthogroups_more_66pc_srep")
-os.mkdir("Orthogroups_less_66pc_srep")
+# Move all orthogroups with >75% representation to a seperate folder
+os.mkdir("Orthogroups_more_75pc_srep")
+os.mkdir("Orthogroups_less_75pc_srep")
 
 ofile = open("species_rep.csv", "w")
 for key,val in species_rep.items():
     ofile.write(key + "," + str(val) + "\n")
-    if val > 66:
-        my_command = "mv " + key + " Orthogroups_more_66pc_srep"
+    if val > 75:
+        my_command = "mv " + key + " Orthogroups_more_75pc_srep"
         output  = subprocess.check_output(my_command, shell=True,
                                       stderr=subprocess.STDOUT)
-        print(key, " moved to >66 file")
-    if val < 66:
-        my_command = "mv " + key + " Orthogroups_less_66pc_srep"
+        print(key, " moved to >75 file")
+    if val < 75:
+        my_command = "mv " + key + " Orthogroups_less_75pc_srep"
         output  = subprocess.check_output(my_command, shell=True,
                                       stderr=subprocess.STDOUT)
-        print(key, " moved to <66 file")
+        print(key, " moved to <75 file")
 
 # Move original_orthogroups and results into a file
 os.mkdir("Original_orthogroups")
